@@ -1,7 +1,7 @@
 node {
    def mvnHome
    stage('Prepare') {
-      git url: 'git@github.com:pervejalam/devops.git', branch: 'master'
+      git url: 'git@github.com:pervejalam/javacode.git', branch: 'master'
       mvnHome = tool 'maven'
    }
    stage('Build') {
@@ -30,10 +30,10 @@ node {
       }
    }
    stage('Deploy') {
-       sh 'curl -u admin:redhat@123 -T target/**.war "http://52.70.55.109:8080/manager/text/deploy?path=/devops&update=true"'
+       sh 'curl -u admin:redhat@123 -T target/**.war "http://18.212.67.25:8080/manager/text/deploy?path=/devops&update=true"'
    }
    stage("Smoke Test"){
-       sh "curl --retry-delay 10 --retry 5 http://52.70.55.109:8080/devops"
+       sh "curl --retry-delay 10 --retry 5 http://18.212.67.25:8080/devops"
    } 
    stage('Artifacts') {
       if (isUnix()) {
